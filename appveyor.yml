@@ -7,7 +7,7 @@ branches:
     - master
 
 install:
-  - set GOPATH=C:\
+  - set GOPATH=%SrcFolder%
   - go env
   - go version
   - echo %GOPATH%
