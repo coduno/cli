@@ -7,9 +7,10 @@ branches:
     - master
 
 environment:
-  - GOPATH: %APPVEYOR_BUILD_FOLDER%
+  - GOPATH: '%APPVEYOR_BUILD_FOLDER%'
 
 install:
+  - echo %GOPATH%
   - set GOPATH=%APPVEYOR_BUILD_FOLDER%
   - echo %PATH%
   - echo %GOPATH%
