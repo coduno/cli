@@ -16,8 +16,8 @@ install:
   - go version
   - go get -v -t ./...
 
-test:
+test_script:
   - go test -v ./...
 
-build:
+build_script:
   - go build -v -o coduno.exe
