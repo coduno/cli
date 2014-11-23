@@ -18,6 +18,6 @@ install:
 
 test:
   - go test -v ./...
-  
+
 build:
   - go build -v -o coduno.exe
