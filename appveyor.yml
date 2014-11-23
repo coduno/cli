@@ -7,7 +7,7 @@ branches:
     - master
 
 environment:
-  GOPATH: '%APPVEYOR_BUILD_FOLDER%'
+  GOPATH: %APPVEYOR_BUILD_FOLDER%
 
 install:
   - set GOPATH=%APPVEYOR_BUILD_FOLDER%
@@ -16,7 +16,9 @@ install:
   - go get -v -t ./...
 
 test_script:
+  - go env
   - go test -v ./...
 
 build_script:
+  - go env
   - go build -v -o coduno.exe
