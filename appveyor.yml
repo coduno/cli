@@ -6,11 +6,14 @@ branches:
   only:
     - master
 
+environment:
+  - GOPATH: %APPVEYOR_BUILD_FOLDER%
+
 install:
-  - set GOPATH=%BuildFolder%
+  - set GOPATH=%APPVEYOR_BUILD_FOLDER%
   - echo %PATH%
   - echo %GOPATH%
-  - echo %BuildFolder%
+  - echo %APPVEYOR_BUILD_FOLDER%
   - go env
   - go version
   - go get -v -t ./...
