@@ -10,12 +10,18 @@ install:
   - set GOPATH=%APPVEYOR_BUILD_FOLDER%
   - go env
   - go version
+  - echo %GOPATH%
+  - echo %cd%
   - go get -v -t ./...
 
 test_script:
+  - echo %GOPATH%
+  - echo %cd%
   - go env
   - go test -v ./...
 
 build_script:
+  - echo %GOPATH%
+  - echo %cd%
   - go env
   - go build -v -o coduno.exe
