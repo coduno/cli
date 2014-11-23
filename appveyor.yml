@@ -7,7 +7,7 @@ branches:
     - master
 
 install:
-  - set GOPATH=%APPVEYOR_BUILD_FOLDER%
+  - set GOPATH=C:\
   - go env
   - go version
   - echo %GOPATH%
