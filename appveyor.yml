@@ -5,3 +5,19 @@ platform:
 branches:
   only:
     - master
+
+environment:
+  GOPATH: '%BuildFolder%'
+
+install:
+  - echo %PATH%
+  - echo %GOPATH%
+  - go env
+  - go version
+  - go get -v -t ./...
+
+test:
+  - go test -v ./...
+  
+build:
+  - go build -v -o coduno.exe
