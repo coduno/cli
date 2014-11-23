@@ -10,6 +10,7 @@ environment:
   GOPATH: '%APPVEYOR_BUILD_FOLDER%'
 
 install:
+  - set GOPATH=%APPVEYOR_BUILD_FOLDER%
   - go env
   - go version
   - go get -v -t ./...
