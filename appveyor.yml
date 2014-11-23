@@ -6,13 +6,11 @@ branches:
   only:
     - master
 
-environment:
-  GOPATH: '%BuildFolder%'
-
 install:
   - set GOPATH=%BuildFolder%
   - echo %PATH%
   - echo %GOPATH%
+  - echo %BuildFolder%
   - go env
   - go version
   - go get -v -t ./...
