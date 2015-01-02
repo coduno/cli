@@ -12,5 +12,8 @@ all: test
 	go build -work -x -v -o ${OUTPUT} \
 		-ldflags "-X main.Version '${VERSION}' -X main.BuildTime '${NOW}'"
 
-test:
+test: get
 	go test
+
+get:
+	go get -d
