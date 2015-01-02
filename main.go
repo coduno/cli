@@ -67,6 +67,8 @@ func (c *Command) Runnable() bool {
 var commands = []*Command{
 	cmdHello,
 	cmdVersion,
+
+	hlpIssue,
 }
 
 var exitStatus = 0
