@@ -110,7 +110,6 @@ func (netrc Netrc) Save() error {
 	writer := bufio.NewWriter(file)
 
 	for key, value := range netrc.Entries {
-		fmt.Printf("DEBUG:", key, value, "\n")
 		if key == "" {
 			writer.WriteString("default\n")
 		} else {
