@@ -62,7 +62,6 @@ func (c *Command) Runnable() bool {
 	return c.Run != nil
 }
 
-
 // Commands lists the available commands and help topics.
 // The order here is the order in which they are printed by 'go help'.
 var commands = []*Command{
@@ -80,7 +79,6 @@ func setExitStatus(n int) {
 	}
 	exitMu.Unlock()
 }
-
 
 func main() {
 	flag.Usage = usage
@@ -253,11 +251,11 @@ func stringList(args ...interface{}) []string {
 	var x []string
 	for _, arg := range args {
 		switch arg := arg.(type) {
-			case []string:
+		case []string:
 			x = append(x, arg...)
-			case string:
+		case string:
 			x = append(x, arg)
-			default:
+		default:
 			panic("stringList: invalid argument")
 		}
 	}
