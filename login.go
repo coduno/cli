@@ -5,6 +5,7 @@ import (
 	"bufio"
 	"encoding/base64"
 	"fmt"
+	"github.com/howeyc/gopass"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -31,12 +32,12 @@ func runLogin(cmd *Command, args []string) {
 	username = strings.TrimSpace(username)
 
 	fmt.Print("Password: ")
-	password, _ := reader.ReadString('\n')
+	password := string(gopass.GetPasswd())
 	password = strings.TrimSpace(password)
 
 	authorization := "Basic " + base64.StdEncoding.EncodeToString([]byte(username+":"+password))
 	req := new(http.Request)
-	req.URL, _ = url.Parse("http://localhost:8080/api/token")
+	req.URL, _ = url.Parse("http://coduno.appspot.com/api/token")
 	req.Header = map[string][]string{
 		"Authorization": {authorization},
 		"Connection":    {"close"},
