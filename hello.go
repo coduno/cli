@@ -16,10 +16,10 @@ hello reaches out to the API and waits for a reply.
 	`,
 }
 
-var url = "http://coduno.appspot.com/api/hello"
+var helloEndpoint = "http://coduno.appspot.com/api/hello"
 
 func runHello(cmd *Command, args []string) {
-	resp, err := http.Get(url)
+	resp, err := http.Get(helloEndpoint)
 	if err != nil {
 		log.Fatal(err)
 	}
