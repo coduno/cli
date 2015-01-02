@@ -12,8 +12,8 @@ var cmdVersion = &Command{
 	UsageLine: "version",
 	Short:     "print Coduno version",
 	Long: `
-	Version prints all necessary version information needed to
-	trace bugs. Include its output when filing a bug.
+Version prints all necessary version information needed to
+trace bugs. Include its output when filing a bug.
 	`,
 }
 

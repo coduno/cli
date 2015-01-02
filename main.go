@@ -67,6 +67,7 @@ func (c *Command) Runnable() bool {
 var commands = []*Command{
 	cmdHello,
 	cmdVersion,
+	cmdLogin,
 
 	hlpIssue,
 }

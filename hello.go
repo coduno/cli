@@ -12,7 +12,7 @@ var cmdHello = &Command{
 	UsageLine: "hello",
 	Short:     "test connection to Coduno API",
 	Long: `
-	hello reaches out to api.cod.uno and waits for a reply.
+hello reaches out to the API and waits for a reply.
 	`,
 }
 
