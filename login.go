@@ -6,9 +6,9 @@ import (
 	"encoding/base64"
 	"fmt"
 	"github.com/howeyc/gopass"
+	"github.com/mitchellh/go-homedir"
 	"io/ioutil"
 	"net/http"
-	"net/url"
 	"os"
 	"strings"
 )
@@ -35,9 +35,20 @@ func runLogin(cmd *Command, args []string) {
 	password := string(gopass.GetPasswd())
 	password = strings.TrimSpace(password)
 
+	// Get pub key TODO: allow for use of custom key location
+	path, _ := homedir.Expand("~/.ssh/id_rsa.pub")
+	keyfile, err := os.Open(path)
+	if err != nil {
+		fmt.Println("Please provide your public RSA key at " + path)
+		os.Exit(1)
+	}
+	
 	authorization := "Basic " + base64.StdEncoding.EncodeToString([]byte(username+":"+password))
-	req := new(http.Request)
-	req.URL, _ = url.Parse("http://coduno.appspot.com/api/token")
+	req, err := http.NewRequest("POST", "http://coduno.appspot.com/api/token", keyfile)
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(1)
+	}
 	req.Header = map[string][]string{
 		"Authorization": {authorization},
 		"Connection":    {"close"},

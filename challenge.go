@@ -44,7 +44,7 @@ func cloneChallenge(cmd *Command, args []string) {
 		fmt.Fprintln(os.Stderr, "Reason: " + string(outstr)) // TODO: Remove message from production tool
 		os.Exit(2)
 	} else {
-		fmt.println(os.Stdout, "Successfully fetched into directory " + args[0])
+		fmt.Println(os.Stdout, "Successfully fetched into directory " + args[0])
 	}
 }
 
