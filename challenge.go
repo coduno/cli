@@ -1,14 +1,14 @@
 package main
 
 import (
-	"os/exec"
-	"os"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"net/url"
+	"os"
+	"os/exec"
 	"strings"
-	"io/ioutil"
-	"encoding/json"
 )
 
 type Challenge struct {
@@ -81,7 +81,7 @@ func listChallenges(cmd *Command, args []string) {
 		fmt.Fprintln(os.Stderr, err.Error())
 		os.Exit(1)
 	}
-	
+
 	client := new(http.Client)
 	res, err := client.Do(req)
 	if err != nil {
@@ -95,17 +95,17 @@ func listChallenges(cmd *Command, args []string) {
 			fmt.Fprintln(os.Stderr, err.Error())
 			os.Exit(1)
 		}
-		 
+
 		var dat map[string]interface{}
 		if err := json.Unmarshal(body, &dat); err != nil {
 			fmt.Fprintln(os.Stderr, err.Error())
 			os.Exit(1)
 		}
-		
+
 		token := dat["private_token"].(string)
 		req, err = http.NewRequest("GET", "http://git.cod.uno/api/v3/projects", nil)
 		req.Header = map[string][]string{
-			"PRIVATE-TOKEN" : {token},
+			"PRIVATE-TOKEN": {token},
 		}
 		res, err = client.Do(req)
 		if err != nil {
@@ -119,7 +119,7 @@ func listChallenges(cmd *Command, args []string) {
 				fmt.Fprintln(os.Stderr, err.Error())
 				os.Exit(1)
 			}
-			
+
 			challenges := make([]Challenge, 0)
 			if err = json.Unmarshal(body, &challenges); err != nil {
 				fmt.Fprintln(os.Stderr, err.Error())
