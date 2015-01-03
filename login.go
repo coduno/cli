@@ -44,7 +44,7 @@ func runLogin(cmd *Command, args []string) {
 	}
 	
 	authorization := "Basic " + base64.StdEncoding.EncodeToString([]byte(username+":"+password))
-	req, err := http.NewRequest("POST", "http://coduno.appspot.com/api/token", keyfile)
+	req, err := http.NewRequest("POST", "https://coduno.appspot.com/api/token", keyfile)
 	if err != nil {
 		fmt.Println(err.Error())
 		os.Exit(1)
