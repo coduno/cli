@@ -140,14 +140,13 @@ func listChallenges(cmd *Command, args []string) {
 
 func cloneChallenge(cmd *Command, args []string) {
 	repo := "http://git.cod.uno/challenges/" + args[0] + ".git"
-	c := exec.Command("git", "clone", repo);
+	c := exec.Command("git", "clone", repo)
 	outstr, err := c.CombinedOutput()
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "Failed to fetch challenge <" + args[0] + ">.");
-		fmt.Fprintln(os.Stderr, "Reason: " + string(outstr)) // TODO: Remove message from production tool
+		fmt.Fprintln(os.Stderr, "Failed to fetch challenge <"+args[0]+">.")
+		fmt.Fprintln(os.Stderr, "Reason: "+string(outstr)) // TODO: Remove message from production tool
 		os.Exit(2)
 	} else {
-		fmt.Println(os.Stdout, "Successfully fetched into directory " + args[0])
+		fmt.Println(os.Stdout, "Successfully fetched into directory "+args[0])
 	}
 }
-
