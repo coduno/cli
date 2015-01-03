@@ -1,10 +1,10 @@
 package main
 
 import (
-	"./netrc"
 	"bufio"
 	"encoding/base64"
 	"fmt"
+	"github.com/coduno/netrc"
 	"github.com/howeyc/gopass"
 	"github.com/mitchellh/go-homedir"
 	"io/ioutil"
@@ -42,7 +42,7 @@ func runLogin(cmd *Command, args []string) {
 		fmt.Println("Please provide your public RSA key at " + path)
 		os.Exit(1)
 	}
-	
+
 	authorization := "Basic " + base64.StdEncoding.EncodeToString([]byte(username+":"+password))
 	req, err := http.NewRequest("POST", "http://coduno.appspot.com/api/token", keyfile)
 	if err != nil {
