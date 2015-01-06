@@ -6,10 +6,6 @@ The Coduno CLI allows you to interact with the Coduno platform in order to compe
 
 ## Usage
 
-### `coduno hello`
-
-This is quite a stupid command that just checks whether it is able to reach the Coduno API.
-
 ### `coduno login`
 
 Logs you in and stores an entry in `~/.netrc` (Linux, Mac OS) or respectively `$HOME\_netrc` like so:
@@ -29,11 +25,17 @@ Each new login invalidates earlier logins.
 
 ### Linux
 
-Download this repository and `go build` it or use this fancy script to download a prebuilt
-binary from Drone.io:
+Download this repository and `go build` it or use our [fancy script](https://github.com/coduno/cli/blob/gh-pages/install.sh) to download a prebuilt
+binary from Drone.io.
 
+To install to `/usr/local/bin`, root privileges might be needed:
 ```
-curl https://coduno.github.io/cli/install.sh | sh
+curl -s https://coduno.github.io/cli/install.sh | sudo bash
+```
+
+You can also tell the installer where to put the binary via `$LOCATION`:
+```
+LOCATION=~/bin curl -s https://coduno.github.io/cli/install.sh | bash
 ```
 
 ### Mac OS
