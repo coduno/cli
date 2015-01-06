@@ -57,17 +57,14 @@ binary to
 
 STOP
 
-INSTALL='All is fine, please install'
-ABORT='Abort installation'
-
-select ack in "$INSTALL" "$ABORT"
-do
+while true; do
+	read -p "Is that okay? Please answer 'yes' or 'no': " ack < /dev/tty
 	case $ack in
-		$INSTALL )
+		'yes' )
 			mv -v $TMPFILE $LOCATION/coduno
 			chmod -v u+x $LOCATION/coduno
 			break;;
-		$ABORT )
+		'no' )
 			rm -vf $TMPFILE
 			echo 'Aborting installation as requested.'
 			exit;;
