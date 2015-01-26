@@ -37,10 +37,12 @@ func parseConfiguration() (*Config, error) {
 func findConfigurationRecursive(dirName, limit string) (*Config, error) {
 	// In the current directory, try to open the config files
 	for i := range fileNames {
+		x, _ := filepath.Abs(path.Join(dirName, fileNames[i]))
+		fmt.Println("Trying "+x)
 		rawConfig, err := ioutil.ReadFile(path.Join(dirName, fileNames[i]))
 		if err != nil {
 			// TODO(flowlo): This might be interesting to log later
-			//fmt.Printf(err.Error()+"\n")
+			fmt.Printf(err.Error()+"\n")
 			continue
 		}
 		var config Config
