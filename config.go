@@ -14,7 +14,7 @@ import (
 type Config struct {
 	Prepare []string `yaml:"prepare,flow"`
 	Build   []string `yaml:"build,flow"`
-	Run     []string `yaml:"run,flow"`
+	Run     string `yaml:"run"`
 }
 
 var fileNames = [2]string { "coduno.yaml", "coduno.yml" }

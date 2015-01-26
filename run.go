@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"os"
 	"os/exec"
@@ -18,30 +17,22 @@ func runRun(cmd *Command, args []string) {
 	config, err := parseConfiguration()
 
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "Unable to retrieve configuration: " + err.Error());
+		fmt.Fprintln(os.Stderr, err.Error());
 		return
 	}
 
-	var finalErr error
-	for i := range config.Run {
-		cmd := exec.Command("bash", "-c", config.Run[i])
+	c := exec.Command("bash", "-c", config.Run)
 
-		cmd.Stdin  = os.Stdin
-		cmd.Stdout = os.Stdout
-		cmd.Stderr = os.Stderr
+	c.Stdin  = os.Stdin
+	c.Stdout = os.Stdout
+	c.Stderr = os.Stderr
 
-		fmt.Printf("Running declaration %d: %s\n", i, config.Run[i])
-		if err = cmd.Start(); err != nil {
-			fmt.Fprintln(os.Stderr, err.Error())
-		}
-
-		if err = cmd.Wait(); err != nil {
-			fmt.Fprintf(os.Stderr, err.Error())
-			finalErr = errors.New("Some command returned an error.")
-		}
+	if err = c.Start(); err != nil {
+		fmt.Fprintln(os.Stderr, err.Error())
+		return
 	}
 
-	if finalErr != nil {
-		os.Exit(5)
+	if err = c.Wait(); err != nil {
+		fmt.Fprintln(os.Stderr, err.Error())
 	}
 }
