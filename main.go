@@ -84,7 +84,7 @@ func setExitStatus(n int) {
 }
 
 func main() {
-	fmt.Print(
+	fmt.Fprint(os.Stderr,
 `
     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     @  WARNING: THIS IS EARLY PREVIEW CODE  @
