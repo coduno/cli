@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"os/exec"
@@ -18,8 +19,10 @@ func runRun(cmd *Command, args []string) {
 
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "Unable to retrieve configuration: " + err.Error());
+		return
 	}
 
+	var finalErr error
 	for i := range config.Run {
 		cmd := exec.Command("bash", "-c", config.Run[i])
 
@@ -34,7 +37,11 @@ func runRun(cmd *Command, args []string) {
 
 		if err = cmd.Wait(); err != nil {
 			fmt.Fprintf(os.Stderr, err.Error())
+			finalErr = errors.New("Some command returned an error.")
 		}
 	}
-	_ = config
+
+	if finalErr != nil {
+		os.Exit(5)
+	}
 }
