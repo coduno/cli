@@ -70,6 +70,7 @@ var commands = []*Command{
 	cmdChallenge,
 	hlpIssue,
 	cmdRun,
+	cmdPrepare,
 }
 
 var exitStatus = 0
