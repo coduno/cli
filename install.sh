@@ -34,6 +34,12 @@ else
 	echo 'version of the command line client for Coduno. Download was skipped.'
 fi
 
+if [ "$1" = "-y" ]
+then
+	mv -fv $TMPFILE $LOCATION/coduno
+	chmod u+x $LOCATION/coduno
+	exit
+fi
 
 SHA=$(shasum $TMPFILE | cut -d' ' -f1)
 MD5=$(md5sum $TMPFILE | cut -d' ' -f1)
@@ -57,7 +63,8 @@ binary to
 
 STOP
 
-while true; do
+while true
+do
 	read -p "Is that okay? Please answer 'yes' or 'no': " ack < /dev/tty
 	case $ack in
 		'yes' )
