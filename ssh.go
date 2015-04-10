@@ -6,14 +6,14 @@ import (
 	"os/exec"
 )
 
-var cmdSsh = &Command{
-	Run:       runSsh,
+var cmdSSH = &Command{
+	Run:       runSSH,
 	UsageLine: "ssh",
 	Short:     "connects to Coduno via ssh",
 	Long:      `This is helpful if you want to check whether Coduno has your public key.`,
 }
 
-func runSsh(cmd *Command, args []string) {
+func runSSH(cmd *Command, args []string) {
 	c := exec.Command("ssh", "git@git.cod.uno")
 
 	c.Stdin = os.Stdin

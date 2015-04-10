@@ -4,13 +4,14 @@ import (
 	"bufio"
 	"encoding/base64"
 	"fmt"
-	"github.com/coduno/netrc"
-	"github.com/howeyc/gopass"
-	"github.com/mitchellh/go-homedir"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"strings"
+
+	"github.com/coduno/netrc"
+	"github.com/howeyc/gopass"
+	"github.com/mitchellh/go-homedir"
 )
 
 var cmdLogin = &Command{
@@ -39,7 +40,7 @@ func runLogin(cmd *Command, args []string) {
 	path, _ := homedir.Expand("~/.ssh/id_rsa.pub")
 	keyfile, err := os.Open(path)
 	if err != nil {
-		fmt.Println("Please provide your public RSA key at " + path)
+		fmt.Printf("Please provide your public RSA key at %s\n", path)
 		os.Exit(1)
 	}
 
@@ -67,14 +68,14 @@ func runLogin(cmd *Command, args []string) {
 		netrcx, err := netrc.Parse()
 
 		if err != nil {
-			fmt.Printf("Failed to read netrc:", err.Error())
+			fmt.Fprintf(os.Stderr, "Failed to read netrc: %s", err.Error())
 		}
 
 		netrcx.Entries["git.cod.uno"] = netrc.Entry{Login: username, Password: string(body)}
 
 		err = netrcx.Save()
 		if err != nil {
-			fmt.Printf("Failed to save netrc:", err.Error())
+			fmt.Fprintf(os.Stderr, "Failed to save netrc: %s", err.Error())
 		}
 	} else {
 		fmt.Print(string(body))
