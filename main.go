@@ -71,6 +71,8 @@ var commands = []*Command{
 	hlpIssue,
 	cmdRun,
 	cmdPrepare,
+	cmdPush,
+	cmdSsh,
 }
 
 var exitStatus = 0
@@ -86,7 +88,7 @@ func setExitStatus(n int) {
 
 func main() {
 	fmt.Fprint(os.Stderr,
-`
+		`
     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     @  WARNING: THIS IS EARLY PREVIEW CODE  @
     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -97,7 +99,7 @@ func main() {
     | contact root@cod.uno.                 |
     \~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
 
-`	)
+`)
 	flag.Usage = usage
 	flag.Parse()
 	log.SetFlags(0)

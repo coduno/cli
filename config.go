@@ -14,10 +14,10 @@ import (
 type Config struct {
 	Prepare []string `yaml:"prepare,flow"`
 	Build   []string `yaml:"build,flow"`
-	Run     string `yaml:"run"`
+	Run     string   `yaml:"run"`
 }
 
-var fileNames = [2]string { "coduno.yaml", "coduno.yml" }
+var fileNames = [2]string{"coduno.yaml", "coduno.yml"}
 
 func parseConfiguration() (*Config, error) {
 	lim := "/"
@@ -46,7 +46,7 @@ func findConfigurationRecursive(dirName, limit string) (*Config, error) {
 		var config Config
 		err = yaml.Unmarshal(rawConfig, &config)
 		if err != nil {
-			fmt.Printf("Error parsing "+fileNames[i]+": "+err.Error()+"\n")
+			fmt.Printf("Error parsing " + fileNames[i] + ": " + err.Error() + "\n")
 			continue
 		}
 		return &config, nil
@@ -57,7 +57,7 @@ func findConfigurationRecursive(dirName, limit string) (*Config, error) {
 		return nil, err
 	}
 	if abs == limit {
-		return nil, errors.New("Reached "+limit+" before finding a valid configuration file.")
+		return nil, errors.New("Reached " + limit + " before finding a valid configuration file.")
 	}
 
 	return findConfigurationRecursive(path.Join(dirName, ".."), limit)

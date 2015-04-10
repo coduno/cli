@@ -10,20 +10,20 @@ var cmdRun = &Command{
 	Run:       runRun,
 	UsageLine: "run",
 	Short:     "runs the configuration",
-	Long: ``,
+	Long:      ``,
 }
 
 func runRun(cmd *Command, args []string) {
 	config, err := parseConfiguration()
 
 	if err != nil {
-		fmt.Fprintln(os.Stderr, err.Error());
+		fmt.Fprintln(os.Stderr, err.Error())
 		return
 	}
 
 	c := exec.Command("bash", "-c", config.Run)
 
-	c.Stdin  = os.Stdin
+	c.Stdin = os.Stdin
 	c.Stdout = os.Stdout
 	c.Stderr = os.Stderr
 

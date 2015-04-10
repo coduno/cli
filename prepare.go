@@ -10,21 +10,21 @@ var cmdPrepare = &Command{
 	Run:       runPrepare,
 	UsageLine: "prepare",
 	Short:     "prepares everything for building and running",
-	Long: ``,
+	Long:      ``,
 }
 
 func runPrepare(cmd *Command, args []string) {
 	config, err := parseConfiguration()
 
 	if err != nil {
-		fmt.Fprintln(os.Stderr, err.Error());
+		fmt.Fprintln(os.Stderr, err.Error())
 		return
 	}
 
 	for i := range config.Prepare {
 		c := exec.Command("bash", "-c", config.Prepare[i])
 
-		c.Stdin  = os.Stdin
+		c.Stdin = os.Stdin
 		c.Stdout = os.Stdout
 		c.Stderr = os.Stderr
 
