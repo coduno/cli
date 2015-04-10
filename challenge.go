@@ -13,7 +13,7 @@ var cmdChallenge = &Command{
 	Long: `
 Fetch challenge <challenge-name> from server.
 
-All needed files will be saved in a directory named <challende-name>.
+All needed files will be saved in a directory named <challenge-name>.
 	`,
 }
 
@@ -40,10 +40,10 @@ func cloneChallenge(cmd *Command, args []string) {
 	c := exec.Command("git", "clone", repo)
 	outstr, err := c.CombinedOutput()
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "Failed to fetch challenge <"+args[0]+">.")
-		fmt.Fprintln(os.Stderr, "Reason: "+string(outstr)) // TODO: Remove message from production tool
+		fmt.Fprintf(os.Stderr, "Failed to fetch challenge <%s>.\n", args[0])
+		fmt.Fprintf(os.Stderr, "Reason: %s\n", outstr) // TODO: Remove message from production tool
 		os.Exit(2)
 	} else {
-		fmt.Println(os.Stdout, "Successfully fetched into directory "+args[0])
+		fmt.Printf("Successfully fetched into directory %s\n", args[0])
 	}
 }

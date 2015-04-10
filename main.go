@@ -72,7 +72,7 @@ var commands = []*Command{
 	cmdRun,
 	cmdPrepare,
 	cmdPush,
-	cmdSsh,
+	cmdSSH,
 }
 
 var exitStatus = 0

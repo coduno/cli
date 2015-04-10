@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -46,7 +45,7 @@ func findConfigurationRecursive(dirName, limit string) (*Config, error) {
 		var config Config
 		err = yaml.Unmarshal(rawConfig, &config)
 		if err != nil {
-			fmt.Printf("Error parsing " + fileNames[i] + ": " + err.Error() + "\n")
+			fmt.Fprintf(os.Stderr, "Error parsing %s: %s\n", fileNames[i], err.Error())
 			continue
 		}
 		return &config, nil
@@ -57,7 +56,7 @@ func findConfigurationRecursive(dirName, limit string) (*Config, error) {
 		return nil, err
 	}
 	if abs == limit {
-		return nil, errors.New("Reached " + limit + " before finding a valid configuration file.")
+		return nil, fmt.Errorf("reached %s before finding a valid configuration file.", limit)
 	}
 
 	return findConfigurationRecursive(path.Join(dirName, ".."), limit)
