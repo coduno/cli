@@ -30,6 +30,7 @@ func runPrepare(cmd *Command, args []string) {
 
 		if err = c.Start(); err != nil {
 			fmt.Fprintln(os.Stderr, err.Error())
+			os.Exit(1)
 			return
 		}
 
