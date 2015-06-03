@@ -33,7 +33,7 @@ type Command struct {
 	Long string
 
 	// Flag is a set of flags specific to this command.
-	Flag flag.FlagSet
+	Flag *flag.FlagSet
 
 	// CustomFlags indicates that the command will do its own
 	// flag parsing.
