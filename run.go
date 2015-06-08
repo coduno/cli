@@ -48,7 +48,6 @@ func runRun(cmd *Command, args []string) {
 	}
 
 	if stats {
-		fmt.Fprintln(os.Stderr, "STATS!")
 		usage := c.ProcessState.SysUsage()
 		f, err := os.Create("stats.log")
 		if err != nil {
