@@ -87,19 +87,6 @@ func setExitStatus(n int) {
 }
 
 func main() {
-	fmt.Fprint(os.Stderr,
-		`
-    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    @  WARNING: THIS IS EARLY PREVIEW CODE  @
-    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    | Do not expect functionality. APIs and |
-    | underlying architecture are changing  |
-    | constantly and without notice. If you |
-    | want to help building Coduno, please  |
-    | contact root@cod.uno.                 |
-    \~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
-
-`)
 	flag.Usage = usage
 	flag.Parse()
 	log.SetFlags(0)
